@@ -61,7 +61,7 @@ body{
     border: 2px groove teal;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(4, 1fr); */
 }
 .container > div{
     background-color:1px solid rgba(255, 255, 255, 0.1);
