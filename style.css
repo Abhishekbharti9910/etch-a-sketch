@@ -19,11 +19,6 @@ body{
     
     font-size: 52px;
 }
-/* .main-content{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-} */
 .btn-effect{
     font-size: 20px;
     margin: 3px 12px 9px;
@@ -61,15 +56,11 @@ body{
     border: 2px groove teal;
     margin: auto;
     display: grid;
-    /* grid-template-columns: repeat(4, 1fr); */
 }
 .container > div{
     background-color:1px solid rgba(255, 255, 255, 0.1);
     border: 2px solid black;
 }
-/* .container > div:hover{
-    
-} */
 
 .sideMenu{
     display: flex;
@@ -83,7 +74,4 @@ body{
 }
 #slider{
     margin: 8px 12px 9px;
-}
-.backBlack{
-    background-color: black;
 }
