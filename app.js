@@ -3,7 +3,11 @@ var slider = document.getElementById("slider");
 const Hcolors = [1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
 const randomcolors = ["#f60100", "#002540", "#000000", "#0070f7"];
 const btns = document.querySelectorAll("button");
+var colorSelected;
+var color = "black";
 var div;
+// all targeted dom
+
 // def function for deafault on load pixel
 dfltByNature = () => {
     container.style.gridTemplateColumns = "repeat(4,1fr)";
@@ -37,17 +41,13 @@ function rmvGrid() {
         });
         
 };
-// adding hover color filling in the pixels
-dfltByNature();
 
+// adding hover color filling in the pixels
 const active = () => {
     let pixels = document.querySelectorAll(".pixel");
-    console.log(pixels);
     Array.from(pixels).forEach(pxl => {
-        pxl.addEventListener("mouseover", (e) =>{
-            let color = hexGen();
-            
-            e.target.style.backgroundColor = color;
+        pxl.addEventListener("mouseover", (e) =>{   colorSelected = selectColor(color);
+            e.target.style.backgroundColor = colorSelected;
         })
     });
     
@@ -65,7 +65,7 @@ function hexGen() {
 // random color gen
 function randomGen() {
     let ran = randomcolors[Math.floor(Math.random() * randomcolors.length)];
-    return ran
+    return  ran;
 }
 // greyScale gen
 // function greyScale() {
@@ -74,4 +74,40 @@ function randomGen() {
     
 // }
 
+//clear function
+function clear() {
+    let pixels = document.querySelectorAll(".pixel");
+    Array.from(pixels).forEach(pxl => {
+        pxl.style.backgroundColor = "white";
+    })
+    color = "black";
+} 
+
+
+// function color select
+function selectColor(color) {
+    if (color == "hexColor") {
+        return hexGen();
+    }
+    else if (color == "Random") {
+        return randomGen();
+    }
+    else if (color == "black") {
+        return "black";
+    }
+    else if (color == "clear") {
+        clear();
+    }
+}
+
+// event listener for all button
+btns.forEach(btn => {
+    btn.addEventListener("click",(e)=>{
+        color = e.target.dataset.color;
+        selectColor(color)
+    });
+});
+
+// functions call backs
+dfltByNature();
 active();
