@@ -6,6 +6,7 @@ const btns = document.querySelectorAll("button");
 var colorSelected;
 var color = "black";
 var div;
+var cnt = 1;
 // all targeted dom
 
 // def function for deafault on load pixel
@@ -46,7 +47,7 @@ function rmvGrid() {
 const active = () => {
     let pixels = document.querySelectorAll(".pixel");
     Array.from(pixels).forEach(pxl => {
-        pxl.addEventListener("mouseover", (e) =>{   colorSelected = selectColor(color);
+        pxl.addEventListener("mouseover", (e) =>{   colorSelected = selectColor(color,e);
             e.target.style.backgroundColor = colorSelected;
         })
     });
@@ -67,12 +68,7 @@ function randomGen() {
     let ran = randomcolors[Math.floor(Math.random() * randomcolors.length)];
     return  ran;
 }
-// greyScale gen
-// function greyScale() {
-//     let color = "black";
-//     opacity = 0.1;
-    
-// }
+
 
 //clear function
 function clear() {
@@ -84,13 +80,30 @@ function clear() {
 } 
 
 
+
 // function color select
-function selectColor(color) {
+function selectColor(color,e) {
     if (color == "hexColor") {
         return hexGen();
     }
     else if (color == "Random") {
         return randomGen();
+    }
+    else if (color == "greyScale") {
+       if (e.target.style.backgroundColor.match(/rgba/)) {
+           let opacity = Number(e.target.style.backgroundColor.slice(-4,-1));
+           if (opacity < 1) {
+               console.log(opacity); 
+               return `rgba(0,0,0,${opacity + 0.1})`;
+           }
+           else{
+               return `rgba(0,0,0,0.10)`;
+           }
+           
+       }
+       else{
+           return `rgba(0,0,0,0.10)`;
+       }
     }
     else if (color == "black") {
         return "black";
